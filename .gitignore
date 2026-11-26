@@ -1,0 +1,7 @@
+/out/
+/config/database.properties
+/debug.log
+AGENTS.md
+docs/*
+test
+deliverables
