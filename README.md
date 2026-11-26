@@ -55,30 +55,25 @@ Tarif tersebut adalah keputusan proyek, bukan standar harga usaha laundry.
 
 ```text
 PBO12.1/
-├── README.md                     # Panduan utama proyek
-├── src/                          # Kode aplikasi
-│   ├── Main.java
-│   ├── LaundryFrame.java
-│   ├── LaundryService.java
-│   ├── Layanan.java
-│   ├── TransaksiLaundry.java
-│   ├── TransaksiRepository.java
-│   ├── InMemoryTransaksiRepository.java
-│   ├── JdbcTransaksiRepository.java
-│   └── DatabaseConnection.java
-├── test/                         # Program pemeriksaan terpisah
-├── sql/
-│   ├── 01_create_database.sql
-│   └── 02_create_table.sql
-├── config/
-│   ├── database.properties.example
-│   └── database.properties       # Konfigurasi lokal, dibuat pengguna
-├── lib/                          # Driver PostgreSQL JDBC
-├── out/                          # Hasil kompilasi dan artefak pemeriksaan
-├── docs/                         # Pedoman, rencana, dan dokumentasi proyek
-├── deliverables/                 # Artefak/paket yang pernah disiapkan
-└── .vscode/                      # Konfigurasi editor
+|-- src/
+|   |-- Main.java
+|   |-- ui/LaundryFrame.java
+|   |-- service/LaundryService.java
+|   |-- model/ (TransaksiLaundry.java, Layanan.java)
+|   |-- repository/ (TransaksiRepository.java,
+|   |                  InMemoryTransaksiRepository.java, JdbcTransaksiRepository.java)
+|   +-- config/DatabaseConnection.java
+|-- test/          # Program pemeriksaan
+|-- config/        # File konfigurasi database lokal dan contohnya
+|-- sql/           # Skrip pembuatan database dan tabel
+|-- lib/           # Driver JDBC
+|-- out/           # Hasil kompilasi
+|-- docs/          # Pedoman dan dokumentasi
+|-- deliverables/  # Paket/artefak terdahulu
++-- .vscode/       # Pengaturan editor
 ```
+
+Package ui menangani tampilan, service validasi/perhitungan, model objek data, repository penyimpanan, dan config pembukaan koneksi. Main dan kelas pemeriksaan tetap tanpa package.
 
 ### Tanggung jawab kelas
 
@@ -123,12 +118,18 @@ Tabel `public.transaksi_laundry` menyimpan ID, nama pelanggan, berat, layanan, h
 Perintah berikut untuk PowerShell di Windows:
 
 ```powershell
-javac -encoding UTF-8 -d out src/*.java test/*.java
+javac -encoding UTF-8 -d out -sourcepath src src/Main.java test/*.java
 java -cp "out;lib/*" DatabaseConnectionCheck
 java -cp "out;lib/*" Main
 ```
 
 Jika kompilasi gagal, selesaikan error sebelum menjalankan aplikasi. Pemeriksaan koneksi yang berhasil menunjukkan database dan tabel tersedia. `Main` membuka GUI dan memuat transaksi yang tersimpan. Pada database baru, tabel GUI kosong.
+
+Untuk kompilasi aplikasi saja tanpa folder test, gunakan:
+
+```powershell
+javac -encoding UTF-8 -d out -sourcepath src src/Main.java
+```
 
 Jika source belum berubah setelah kompilasi, cukup jalankan perintah `Main`. Folder `test` tidak otomatis dijalankan saat aplikasi dibuka.
 

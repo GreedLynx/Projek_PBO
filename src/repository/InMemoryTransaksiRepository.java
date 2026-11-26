@@ -1,3 +1,7 @@
+package repository;
+
+import model.TransaksiLaundry;
+
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;

@@ -1,3 +1,6 @@
+import ui.LaundryFrame;
+import repository.JdbcTransaksiRepository;
+
 import javax.swing.SwingUtilities;
 
 // Titik masuk aplikasi: membuka GUI Swing dengan penyimpanan PostgreSQL.

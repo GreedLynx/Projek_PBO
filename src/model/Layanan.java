@@ -1,3 +1,5 @@
+package model;
+
 import java.math.BigDecimal;
 
 // Pilihan layanan beserta nama tampilan dan tarif per kilogram.

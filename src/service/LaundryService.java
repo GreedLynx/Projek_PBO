@@ -1,3 +1,5 @@
+package service;
+
 import java.math.BigDecimal;
 
 // Menyediakan validasi dan perhitungan statis yang digunakan GUI serta model transaksi.

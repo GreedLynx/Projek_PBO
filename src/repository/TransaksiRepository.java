@@ -1,3 +1,7 @@
+package repository;
+
+import model.TransaksiLaundry;
+
 import java.util.List;
 
 // Kontrak CRUD agar GUI dapat menggunakan penyimpanan memori atau JDBC.
